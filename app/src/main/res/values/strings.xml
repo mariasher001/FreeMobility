@@ -2,4 +2,24 @@
     <string name="app_name">Free Mobility</string>
     <string name="free_mobility">FREE MOBILITY</string>
     <string name="go_on_with_your_life">Go On With Your Life</string>
+    <string name="admin_portal">Admin Portal</string>
+    <string name="customer_portal">Customer Portal</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password"> Forgot Password? </string>
+    <string name="enter_your_full_name">Enter your Full Name</string>
+    <string name="enter_your_email_address">Enter your Email Address</string>
+    <string name="register">Register</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="send_reset_link">Send Reset-Link</string>
+    <string name="start">Start</string>
+    <string name="pause">Pause</string>
+    <string name="reset">Reset</string>
+    <string name="stop">Stop</string>
+    <string name="current_number">Current Number:</string>
+    <string name="queue_length">Queue Length:</string>
+    <string name="customers_left">customers Left:</string>
+    <string name="avg_time">Avg. Time:</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 </resources>

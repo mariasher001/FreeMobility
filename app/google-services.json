@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "172341873439",
+    "firebase_url": "https://free-mobility-default-rtdb.firebaseio.com",
+    "project_id": "free-mobility",
+    "storage_bucket": "free-mobility.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172341873439:android:e1911cce024b8c2df07e2a",
+        "android_client_info": {
+          "package_name": "com.mariasher.freemobility"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172341873439-rd5caup1pjod28s4fgsmglububceg3oi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoTQnzvS3_in2V7hIOUheBIJ3XVCLHJDw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172341873439-rd5caup1pjod28s4fgsmglububceg3oi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

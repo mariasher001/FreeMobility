@@ -10,6 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FreeMobility">
         <activity
+            android:name=".AdminProfile"
+            android:exported="false"
+            android:parentActivityName=".AfterAdminLogin"/>
+        <activity
+            android:name=".AfterAdminLogin"
+            android:exported="false" />
+        <activity
+            android:name=".ForgotPassword"
+            android:exported="false"
+            android:parentActivityName=".AdminPortal"/>
+        <activity
+            android:name=".RegisterAdmin"
+            android:exported="false"
+            android:parentActivityName=".AdminPortal" />
+        <activity
+            android:name=".AdminPortal"
+            android:exported="false"
+            android:parentActivityName=".MainActivity2" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
