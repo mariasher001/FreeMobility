@@ -55,6 +55,17 @@
             app:cornerRadius="24dp" />
 
         <Button
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#8F3D3D"
+            android:onClick="nextButtonClicked"
+            android:text="@string/next"
+            android:textSize="24sp"
+            app:cornerRadius="24dp" />
+
+        <Button
             android:id="@+id/pauseButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,17 +84,6 @@
             android:backgroundTint="#8F3D3D"
             android:onClick="resetButtonClicked"
             android:text="@string/reset"
-            android:textSize="24sp"
-            app:cornerRadius="24dp" />
-
-        <Button
-            android:id="@+id/stopButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#8F3D3D"
-            android:onClick="stopButtonClicked"
-            android:text="@string/stop"
             android:textSize="24sp"
             app:cornerRadius="24dp" />
     </LinearLayout>

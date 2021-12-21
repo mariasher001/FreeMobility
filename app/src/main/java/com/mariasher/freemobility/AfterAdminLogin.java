@@ -48,12 +48,14 @@ public class AfterAdminLogin extends AppCompatActivity {
     public void startButtonClicked(View view) {
     }
 
+    public void nextButtonClicked(View view) {
+    }
+
     public void pauseButtonClicked(View view) {
     }
 
     public void resetButtonClicked(View view) {
     }
 
-    public void stopButtonClicked(View view) {
-    }
+
 }
