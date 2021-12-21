@@ -10,7 +10,7 @@
         android:id="@+id/banner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="320dp"
         android:text="@string/free_mobility"
         android:textAlignment="center"
         android:textColor="#682B2B"
