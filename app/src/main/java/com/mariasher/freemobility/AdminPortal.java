@@ -50,7 +50,7 @@ public class AdminPortal extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             binding.progressBar.setVisibility(View.GONE);
-                            userProfile();
+                            loginSuccessful();
                         }
                         else
                         {
@@ -61,7 +61,7 @@ public class AdminPortal extends AppCompatActivity {
                 });
     }
 
-    private void userProfile() {
+    private void loginSuccessful() {
         Intent intent = new Intent(this,AfterAdminLogin.class);
         startActivity(intent);
     }
