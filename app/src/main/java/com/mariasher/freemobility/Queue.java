@@ -14,7 +14,7 @@ public class Queue {
     }
     //private constructor
 
-    public Queue(int currentNumber, int lastNumber, int customerLeft, String averageTime,String timeOfStart, String timeOfNext) {
+    public Queue(int currentNumber, int lastNumber, int customerLeft, String averageTime, String timeOfStart, String timeOfNext) {
         this.currentNumber = currentNumber;
         this.lastNumber = lastNumber;
         this.customerLeft = customerLeft;
@@ -22,7 +22,6 @@ public class Queue {
         this.timeOfStart = timeOfStart;
         this.timeOfNext = timeOfNext;
     }
-
 
 
 }

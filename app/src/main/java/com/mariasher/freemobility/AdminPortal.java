@@ -31,12 +31,12 @@ public class AdminPortal extends AppCompatActivity {
         String email = binding.emailAddress.getText().toString();
         String password = binding.password.getText().toString();
 
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             binding.emailAddress.setError("Email cannot be Empty");
             binding.emailAddress.requestFocus();
             return;
         }
-        if(password.isEmpty()){
+        if (password.isEmpty()) {
             binding.password.setError("Password cannot be Empty");
             binding.password.requestFocus();
             return;
@@ -44,16 +44,14 @@ public class AdminPortal extends AppCompatActivity {
 
         binding.progressBar.setVisibility(View.VISIBLE);
 
-        mAuth.signInWithEmailAndPassword(email,password)
+        mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             binding.progressBar.setVisibility(View.GONE);
                             loginSuccessful();
-                        }
-                        else
-                        {
+                        } else {
                             Toast.makeText(AdminPortal.this, "Failed to Login!! Please Check Again!", Toast.LENGTH_SHORT).show();
                             binding.progressBar.setVisibility(View.GONE);
                         }
@@ -62,7 +60,7 @@ public class AdminPortal extends AppCompatActivity {
     }
 
     private void loginSuccessful() {
-        Intent intent = new Intent(this,AfterAdminLogin.class);
+        Intent intent = new Intent(this, AfterAdminLogin.class);
         startActivity(intent);
     }
 

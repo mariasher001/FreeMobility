@@ -167,9 +167,8 @@ public class AfterAdminLogin extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(AfterAdminLogin.this, "Queue is updated", Toast.LENGTH_LONG).show();
-                        }
-                        else{
-                            Toast.makeText(AfterAdminLogin.this,"Can't update, PLease try again!",Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(AfterAdminLogin.this, "Can't update, PLease try again!", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
