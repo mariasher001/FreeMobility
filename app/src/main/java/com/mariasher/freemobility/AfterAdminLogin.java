@@ -87,7 +87,7 @@ public class AfterAdminLogin extends AppCompatActivity {
         long t = LocalTime.now().minusNanos(LocalTime.parse(timeOfStart).toNanoOfDay()).toNanoOfDay();
         String avgTime = LocalTime.ofNanoOfDay(t).toString();
 
-        Queue queue = new Queue(0, 2, 2, avgTime, timeOfStart, timeOfStart);
+        Queue queue = new Queue(0, 0, 0, avgTime, timeOfStart, timeOfStart);
         mReal.getReference("QueueTable")
                 .child(mAuth.getCurrentUser().getUid())
                 .setValue(queue)

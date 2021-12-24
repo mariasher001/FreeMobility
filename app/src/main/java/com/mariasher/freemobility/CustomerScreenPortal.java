@@ -196,6 +196,8 @@ public class CustomerScreenPortal extends AppCompatActivity {
                 .child("removedNumber")
                 .setValue(Integer.parseInt(binding.userQueueNumberTextView.getText().toString()));
 
+        binding.userQueueNumberTextView.setText("0");
+
     }
 
     private void updateLastNumber(CustomerAccessKey accessKey) {
