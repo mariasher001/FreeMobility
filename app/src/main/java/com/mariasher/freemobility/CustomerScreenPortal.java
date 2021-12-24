@@ -4,7 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -121,7 +124,6 @@ public class CustomerScreenPortal extends AppCompatActivity {
         binding.currentNumberOnCallTextView.setText(""+queue.currentNumber);
         binding.userQueueNumberTextView.setText(""+queue.lastNumber);
         binding.ETATextView.setText("" + hour + " h, " + min + " m, " + sec + " s");
-        sendNotification(queue);
     }
 
     private void updateDatabase(Queue updatedQueue, CustomerAccessKey accessKey) {
@@ -154,6 +156,7 @@ public class CustomerScreenPortal extends AppCompatActivity {
                         int min = ETA.getMinute();
                         int sec = ETA.getSecond();
                         binding.ETATextView.setText("" + hour + " h, " + min + " m, " + sec + " s");
+                        sendNotification(queue);
                     }
 
                     @Override
@@ -161,13 +164,6 @@ public class CustomerScreenPortal extends AppCompatActivity {
 
                     }
                 });
-    }
-
-
-
-
-    private void sendNotification(Queue queue) {
-
     }
 
     public void exitQueueClicked(View view) {
@@ -226,4 +222,26 @@ public class CustomerScreenPortal extends AppCompatActivity {
                     }
                 });
     }
+
+
+    private void sendNotification(Queue queue) {
+        int myNum = Integer.parseInt(binding.userQueueNumberTextView.getText().toString());
+        if(queue.currentNumber == myNum){
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(CustomerScreenPortal.this,"Notify");
+            builder.setContentTitle("FreeMobility");
+            builder.setContentText("It's your Turn!!!");
+            builder.setSmallIcon(R.mipmap.ic_logo1_round);
+            builder.setAutoCancel(true);
+
+            NotificationManagerCompat managerCompat = NotificationManagerCompat.from(CustomerScreenPortal.this);
+            managerCompat.notify(1,builder.build());
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                NotificationChannel channel = new NotificationChannel("Notify","Notify", NotificationManager.IMPORTANCE_HIGH);
+                NotificationManager manager = getSystemService(NotificationManager.class);
+                manager.createNotificationChannel(channel);
+            }
+        }
+    }
+
 }
