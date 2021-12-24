@@ -38,6 +38,23 @@ public class AfterAdminLogin extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mReal = FirebaseDatabase.getInstance();
+
+        mReal.getReference("QueueTable")
+                .child(mAuth.getCurrentUser().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Queue queue = snapshot.getValue(Queue.class);
+                        if(queue!=null){
+                            updateScreen();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
     }
 
     @Override
@@ -89,7 +106,7 @@ public class AfterAdminLogin extends AppCompatActivity {
     private void updateScreen() {
         mReal.getReference("QueueTable")
                 .child(mAuth.getCurrentUser().getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -97,7 +114,22 @@ public class AfterAdminLogin extends AppCompatActivity {
                         if (queue != null) {
                             binding.currentNumberData.setText("" + queue.currentNumber);
                             binding.lastNumberData.setText("" + queue.lastNumber);
-                            binding.customersLeftData.setText("" + queue.customerLeft);
+                            mReal.getReference("QueueTable")
+                                    .child(mAuth.getCurrentUser().getUid())
+                                    .child("lastNumber")
+                                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                            int lastNum = snapshot.getValue(Integer.class);
+                                            binding.customersLeftData.setText("" + (lastNum-queue.currentNumber));
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
 
                             LocalTime avgTime = LocalTime.parse(queue.averageTime);
                             int hour = avgTime.getHour();

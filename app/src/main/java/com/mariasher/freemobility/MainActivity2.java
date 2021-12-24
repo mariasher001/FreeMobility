@@ -24,7 +24,7 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
     public void customerPortalClicked(View view) {
-        //Intent intent = new Intent(this, CustomerPortal.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, CustomerSelectionPortal.class);
+        startActivity(intent);
     }
 }

@@ -10,16 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FreeMobility">
         <activity
+            android:name=".CustomerScreenPortal"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerSelectionPortal"
+            android:exported="false" />
+        <activity
             android:name=".AdminProfile"
             android:exported="false"
-            android:parentActivityName=".AfterAdminLogin"/>
+            android:parentActivityName=".AfterAdminLogin" />
         <activity
             android:name=".AfterAdminLogin"
             android:exported="false" />
         <activity
             android:name=".ForgotPassword"
             android:exported="false"
-            android:parentActivityName=".AdminPortal"/>
+            android:parentActivityName=".AdminPortal" />
         <activity
             android:name=".RegisterAdmin"
             android:exported="false"

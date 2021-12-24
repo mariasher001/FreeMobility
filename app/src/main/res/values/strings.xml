@@ -24,4 +24,13 @@
     <string name="logout">Logout</string>
     <string name="next">Next</string>
     <string name="last_number">Last Number</string>
+    <string name="current_number_on_call">Current Number On Call</string>
+    <string name="your_expected_number">Your expected Number</string>
+    <string name="eta_of_your_turn">ETA of your Turn:</string>
+    <string name="enter_queue">Enter Queue</string>
+    <string name="textview">TextView</string>
+    <string name="nil">nil</string>
+    <string name="your_queue_number">Your number:</string>
+    <string name="exit_queue">Exit Queue</string>
+    <string name="you_can_t_enter_the_queue_at_the_moment_please_try_again_later">You can\'t enter the Queue at the moment, Please try again later :)</string>
 </resources>
