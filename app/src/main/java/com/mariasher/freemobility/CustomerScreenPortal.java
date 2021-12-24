@@ -43,6 +43,7 @@ public class CustomerScreenPortal extends AppCompatActivity {
 
     }
 
+
     private void updateYourNumber() {
         binding.progressBar.setVisibility(View.VISIBLE);
 
@@ -79,6 +80,7 @@ public class CustomerScreenPortal extends AppCompatActivity {
                         if(accessKey!=null){
                             getQueue(accessKey);
                             updateQueue(accessKey);
+                            notificationListener(accessKey);
                         }
                         binding.progressBar.setVisibility(View.GONE);
                     }
@@ -156,7 +158,6 @@ public class CustomerScreenPortal extends AppCompatActivity {
                         int min = ETA.getMinute();
                         int sec = ETA.getSecond();
                         binding.ETATextView.setText("" + hour + " h, " + min + " m, " + sec + " s");
-                        sendNotification(queue);
                     }
 
                     @Override
@@ -223,10 +224,28 @@ public class CustomerScreenPortal extends AppCompatActivity {
                 });
     }
 
+    private void notificationListener(CustomerAccessKey accessKey) {
+        mReal.getReference("QueueTable")
+                .child(accessKey.adminIdKey)
+                .child("currentNumber")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        int currentNumber = snapshot.getValue(Integer.class);
+                        sendNotification(currentNumber);
+                    }
 
-    private void sendNotification(Queue queue) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+
+    private void sendNotification(int currentNumber) {
         int myNum = Integer.parseInt(binding.userQueueNumberTextView.getText().toString());
-        if(queue.currentNumber == myNum){
+        if(currentNumber == myNum){
             NotificationCompat.Builder builder = new NotificationCompat.Builder(CustomerScreenPortal.this,"Notify");
             builder.setContentTitle("FreeMobility");
             builder.setContentText("It's your Turn!!!");

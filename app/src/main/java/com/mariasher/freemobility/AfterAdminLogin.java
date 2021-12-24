@@ -79,6 +79,8 @@ public class AfterAdminLogin extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void startButtonClicked(View view) {
 
+        customerKeyGeneration(true);
+
         binding.progressBar.setVisibility(View.VISIBLE);
 
         String timeOfStart = LocalTime.now().toString();
@@ -97,6 +99,27 @@ public class AfterAdminLogin extends AppCompatActivity {
                             updateScreen();
                         } else {
                             Toast.makeText(AfterAdminLogin.this, "Unsuccessful!Please Try again!", Toast.LENGTH_LONG).show();
+                        }
+                        binding.progressBar.setVisibility(View.GONE);
+                    }
+                });
+    }
+
+    private void customerKeyGeneration(boolean queueStart) {
+        String AdminID = mAuth.getCurrentUser().getUid();
+
+        binding.progressBar.setVisibility(View.VISIBLE);
+        CustomerAccessKey accessKey = new CustomerAccessKey(queueStart,AdminID,0);
+        mReal.getReference("CustomerPortalAccess")
+                .child("CustomerAccessKey")
+                .setValue(accessKey)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(AfterAdminLogin.this,"Customer Key Set!", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(AfterAdminLogin.this,"Can't create customer key!",Toast.LENGTH_SHORT).show();
                         }
                         binding.progressBar.setVisibility(View.GONE);
                     }
@@ -211,9 +234,26 @@ public class AfterAdminLogin extends AppCompatActivity {
 
     public void pauseButtonClicked(View view) {
         //Stop assigning Numbers
+        mReal.getReference("CustomerPortalAccess")
+                .child("CustomerAccessKey")
+                .child("queueStart")
+                .setValue(false).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(AfterAdminLogin.this,"Customer Entry is Paused",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void resetButtonClicked(View view) {
+        String timeOfStart = LocalTime.now().toString();
+        long t = LocalTime.now().minusNanos(LocalTime.parse(timeOfStart).toNanoOfDay()).toNanoOfDay();
+        String avgTime = LocalTime.ofNanoOfDay(t).toString();
+
+        Queue queue = new Queue(0,0,0,avgTime,timeOfStart,timeOfStart);
         binding.progressBar.setVisibility(View.VISIBLE);
         mReal.getReference("QueueTable")
                 .child(mAuth.getCurrentUser().getUid())
@@ -231,6 +271,7 @@ public class AfterAdminLogin extends AppCompatActivity {
                     }
                 });
 
+        pauseButtonClicked(view);
     }
 
     private void resetDisplay() {
